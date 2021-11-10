@@ -1,38 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Rozha+One&display=swap");
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img {
+  max-width: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: #e4f3eb;
+}
+.logo {
+  height: 2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.btn-green {
+  background-color: #70cf84;
+  color: #fff;
+  border: 1px solid #62b875;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-cursive {
+  font-family: "Kaushan Script", cursive;
+  font-weight: bold;
+}
+.text-cursive {
+  font-family: "Kaushan Script", cursive;
+  font-weight: bold;
+}
+.bg-green {
+  background-color: #70cf84;
+  color: #fff;
+}
+.bg-gr {
+  background: linear-gradient(90deg, #20544a, #9dc586);
+  color: #fff;
+}
+.bg-warning {
+  background-color: #eebb4d !important;
+  color: #134f29;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.text-green {
+  color: #70cf84;
+}
+
+@media screen and (max-width: 576px) {
+  :root {
+    font-size: 14px;
   }
 }

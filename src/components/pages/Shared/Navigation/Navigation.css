@@ -1,0 +1,8 @@
+.navbar {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #e4f3eb;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  z-index: 100;
+}
