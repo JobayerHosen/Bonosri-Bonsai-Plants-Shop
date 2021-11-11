@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  getIdToken,
 } from "@firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
@@ -17,6 +18,7 @@ const useFirebase = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState("");
 
   const auth = getAuth();
 
@@ -27,12 +29,12 @@ const useFirebase = () => {
     signInWithPopup(auth, gAuthProvider)
       .then((result) => {
         setUser(result.user);
-        setIsLoading(false);
+        saveUser(result.user.email, result.user.displayName, "PUT");
       })
       .catch((error) => {
         setError(error.message);
-        setIsLoading(false);
-      });
+      })
+      .finally(setIsLoading(false));
   };
 
   //   EMAIN AND PASSWORD SIGN UP
@@ -42,12 +44,12 @@ const useFirebase = () => {
       .then((userCredential) => {
         setUser(userCredential.user);
         setUserProfile(auth, name);
-        setIsLoading(false);
+        saveUser(user.uid, email, name, "POST");
       })
       .catch((err) => {
         setError(err.message);
-        setIsLoading(false);
-      });
+      })
+      .finally(setIsLoading(false));
   };
 
   // SET USER PROFILE
@@ -58,13 +60,12 @@ const useFirebase = () => {
     })
       .then(() => {
         // Profile updated!
-        setIsLoading(false);
       })
       .catch((error) => {
         // An error occurred
         console.log(error);
-        setIsLoading(false);
-      });
+      })
+      .finally(setIsLoading(false));
   };
 
   //   EMAIN AND PASSWORD LOGIN
@@ -73,12 +74,22 @@ const useFirebase = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
-        setIsLoading(false);
       })
       .catch((err) => {
         setError(err.message);
-        setIsLoading(false);
-      });
+      })
+      .finally(setIsLoading(false));
+  };
+
+  const saveUser = (uid, email, displayName, method) => {
+    const user = { email, displayName };
+    fetch("http://localhost:5000/users", {
+      method: method,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    }).then();
   };
 
   //   LOG OUT
@@ -92,13 +103,12 @@ const useFirebase = () => {
       if (user) {
         // User is signed in
         setUser(user);
-        setIsLoading(false);
+        getIdToken(user).then((idToken) => setToken(idToken));
         // ...
       } else {
         // User is signed out
-
-        setIsLoading(false);
       }
+      setIsLoading(false);
     });
   }, []);
 
@@ -106,6 +116,7 @@ const useFirebase = () => {
     user,
     error,
     setError,
+    token,
     isLoading,
     signInWithGoogle,
     createAccountWithEmailPassword,
