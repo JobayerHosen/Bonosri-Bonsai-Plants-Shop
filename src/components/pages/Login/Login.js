@@ -17,7 +17,6 @@ const Login = () => {
 
   const refferer = location?.state?.from || { pathname: "/" };
 
-  console.log(refferer);
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     logInWithEmailandPassword(email, password);

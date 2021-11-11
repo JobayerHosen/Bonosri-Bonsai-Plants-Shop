@@ -8,8 +8,7 @@ import Navigation from "../Shared/Navigation/Navigation";
 import "./Signup.css";
 
 const Signup = () => {
-  const { user, signInWithGoogle, signInWithGithub, createAccountWithEmailPassword, error, setError, isLoading } =
-    useAuth();
+  const { user, signInWithGoogle, createAccountWithEmailPassword, error, setError, isLoading } = useAuth();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,8 +18,6 @@ const Signup = () => {
   const location = useLocation();
 
   const refferer = location?.state?.from || { pathname: "/" };
-
-  console.log(refferer);
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();

@@ -9,7 +9,7 @@ const Explore = () => {
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
-    fetch("./fakeData.json")
+    fetch("https://bonosri-bonsai.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setFeatured(data));
   }, []);

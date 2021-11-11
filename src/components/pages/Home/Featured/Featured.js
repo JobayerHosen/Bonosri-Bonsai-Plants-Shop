@@ -9,7 +9,7 @@ const Featured = () => {
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
-    fetch("./fakeData.json")
+    fetch("https://bonosri-bonsai.herokuapp.com/products?limit=6")
       .then((res) => res.json())
       .then((data) => setFeatured(data));
   }, []);
@@ -24,7 +24,7 @@ const Featured = () => {
       <div className="products">
         <Container>
           <Row>
-            {featured.slice(0, 6).map((product, index) => (
+            {featured.map((product, index) => (
               <ProductCard key={index} product={product}></ProductCard>
             ))}
           </Row>

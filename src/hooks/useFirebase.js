@@ -19,6 +19,7 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState("");
+  const [updatedName, setUpdatedName] = useState("");
 
   const auth = getAuth();
 
@@ -29,7 +30,7 @@ const useFirebase = () => {
     signInWithPopup(auth, gAuthProvider)
       .then((result) => {
         setUser(result.user);
-        saveUser(result.user.email, result.user.displayName, "PUT");
+        saveUser(result.user.uid, result.user.email, result.user.displayName, "PUT");
       })
       .catch((error) => {
         setError(error.message);
@@ -39,12 +40,15 @@ const useFirebase = () => {
 
   //   EMAIN AND PASSWORD SIGN UP
   const createAccountWithEmailPassword = (email, password, name) => {
+    console.log(email, name);
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setUser(userCredential.user);
+      .then(async (userCredential) => {
+        await setUser(userCredential.user);
+        console.log("user created");
+        await saveUser(userCredential.user.uid, email, name, "POST");
+        console.log("saved to db");
         setUserProfile(auth, name);
-        saveUser(user.uid, email, name, "POST");
       })
       .catch((err) => {
         setError(err.message);
@@ -60,6 +64,8 @@ const useFirebase = () => {
     })
       .then(() => {
         // Profile updated!
+        console.log("profile updated");
+        setUpdatedName(name);
       })
       .catch((error) => {
         // An error occurred
@@ -81,15 +87,18 @@ const useFirebase = () => {
       .finally(setIsLoading(false));
   };
 
-  const saveUser = (uid, email, displayName, method) => {
-    const user = { email, displayName };
-    fetch("http://localhost:5000/users", {
+  const saveUser = async (uid, email, displayName, method) => {
+    const user = { uid, email, displayName };
+    console.log(user);
+    await fetch("http://localhost:5000/users", {
       method: method,
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(user),
-    }).then();
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   //   LOG OUT
@@ -110,7 +119,7 @@ const useFirebase = () => {
       }
       setIsLoading(false);
     });
-  }, []);
+  }, [updatedName]);
 
   return {
     user,
