@@ -6,6 +6,7 @@ import Footer from "./components/pages/Shared/Footer/Footer";
 import Login from "./components/pages/Login/Login";
 import AuthProvider from "./contexts/AuthProvider";
 import Signup from "./components/pages/Signup/Signup";
+import Purchage from "./components/pages/Purchage/Purchage";
 
 function App() {
   return (
@@ -27,6 +28,12 @@ function App() {
             </Route>
             <Route path="/signup">
               <Signup></Signup>
+            </Route>
+            <Route path="/purchage/:id">
+              <Purchage></Purchage>
+            </Route>
+            <Route path="*">
+              <h1>Page Not Found</h1>
             </Route>
           </Switch>
           <Footer></Footer>
