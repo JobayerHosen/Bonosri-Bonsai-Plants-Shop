@@ -1,12 +1,12 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../../hooks/useAuth";
 import Loading from "../Loading/Loading";
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const firebaseAuth = useAuth();
+  const { user, isLoading } = useAuth();
 
-  if (firebaseAuth.isLoading) {
+  if (isLoading) {
     return (
       <Route {...rest}>
         <Loading></Loading>
@@ -16,9 +16,7 @@ const PrivateRoute = ({ children, ...rest }) => {
 
   return (
     <Route {...rest}>
-      {({ location }) =>
-        firebaseAuth.user ? children : <Redirect to={{ pathname: "/login", state: { from: location } }} />
-      }
+      {({ location }) => (user?.email ? children : <Redirect to={{ pathname: "/login", state: { from: location } }} />)}
     </Route>
   );
 };
