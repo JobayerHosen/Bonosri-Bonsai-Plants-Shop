@@ -12,8 +12,13 @@ a {
   color: inherit;
 }
 
+a:hover {
+  color: #62b875;
+}
+
 body {
   background-color: #e4f3eb;
+  background-color: #ffffff;
 }
 .logo {
   height: 2rem;

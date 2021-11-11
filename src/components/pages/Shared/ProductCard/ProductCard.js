@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
             <h1 className="mb-0">${price}</h1>
             <NavLink to="/about">
               <Button variant="outline-warning" className="rounded-pill btn-cursive">
-                Learn More
+                Buy Now
               </Button>
             </NavLink>
           </div>

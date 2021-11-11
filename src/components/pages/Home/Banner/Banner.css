@@ -50,14 +50,18 @@
 
 @media screen and (max-width: 992px) {
   .banner-left {
-    height: 50vh;
+    height: 58vh;
     justify-content: flex-start;
     align-items: flex-end;
+  }
+  .banner-title {
+    padding-top: 4rem;
+    font-size: 3.5rem;
   }
 
   .banner-right {
     position: relative;
-    height: 50vh;
+    height: 42vh;
     justify-content: flex-end;
     align-items: center;
   }
@@ -65,7 +69,7 @@
   .bg-wrapper {
     padding: 1rem;
     border-radius: 2rem;
-    width: 70%;
+    width: 60%;
     height: auto;
     box-shadow: 0 0 10px 5px #33333355;
   }
@@ -84,6 +88,15 @@
     height: auto;
   }
   .banner-left {
+    height: 56vh;
     align-items: flex-end;
+    padding-top: 4rem;
+  }
+  .banner-right {
+    height: 45vh;
+  }
+  .banner-title {
+    padding-top: 4rem;
+    font-size: 3.4rem;
   }
 }

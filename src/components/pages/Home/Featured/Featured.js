@@ -24,7 +24,7 @@ const Featured = () => {
       <div className="products">
         <Container>
           <Row>
-            {featured.map((product, index) => (
+            {featured.slice(0, 6).map((product, index) => (
               <ProductCard key={index} product={product}></ProductCard>
             ))}
           </Row>
