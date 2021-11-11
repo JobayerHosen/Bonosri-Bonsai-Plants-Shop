@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
-  const { _id, title, price, desc, rating, img } = product;
+  const { _id, title, price, desc, img } = product;
 
   return (
     <Col className="card" xs="12" md="6" lg="4">

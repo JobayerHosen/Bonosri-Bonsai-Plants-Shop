@@ -8,7 +8,7 @@ import Navigation from "../Shared/Navigation/Navigation";
 import "./Login.css";
 
 const Login = () => {
-  const { user, signInWithGoogle, logInWithEmailandPassword, error, isLoading } = useAuth();
+  const { user, signInWithGoogle, logInWithEmailandPassword, isLoading } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

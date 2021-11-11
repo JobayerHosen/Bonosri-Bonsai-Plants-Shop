@@ -8,7 +8,7 @@ import Navigation from "../Shared/Navigation/Navigation";
 import "./Signup.css";
 
 const Signup = () => {
-  const { user, signInWithGoogle, createAccountWithEmailPassword, error, setError, isLoading } = useAuth();
+  const { user, signInWithGoogle, createAccountWithEmailPassword, setError, isLoading } = useAuth();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

@@ -1,7 +1,6 @@
 import React from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
 import slider from "../../../../assets/slider.jpg";
-import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const style = {
   backgroundImage: `url(${slider})`,

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import useAuth from "../../../../hooks/useAuth";
+import Loading from "../../Shared/Loading/Loading";
 import Navigation from "../../Shared/Navigation/Navigation";
 import ProductCard from "../../Shared/ProductCard/ProductCard";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import "./Explore.css";
 
 const Explore = () => {
+  const { isLoading } = useAuth();
   const [featured, setFeatured] = useState([]);
 
   useEffect(() => {
@@ -14,6 +17,9 @@ const Explore = () => {
       .then((data) => setFeatured(data));
   }, []);
 
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <>
       <Navigation></Navigation>
