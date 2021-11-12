@@ -45,7 +45,7 @@ const ManageOrders = () => {
   const handleStatusChangle = (status) => {
     const update = { status: status };
     setShow(false);
-    fetch(`https://bonosri-bonsai.herokuapp.com/orders/${updatingOrder}`, {
+    fetch(`https://bonosri-bonsai.herokuapp.com/orders${updatingOrder}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -66,10 +66,9 @@ const ManageOrders = () => {
       <h5 className="text-muted mb-4 mt-0 p-0 fw-normal">{url}</h5>
       <div className="paper">
         <div className="paper-top">
-          <h3>
+          <h3 className="border-bottom pb-3">
             <i className="bi bi-cart-check"></i> Manage Orders
           </h3>
-          <hr />
           <div className="paper-body table-responsive">
             <table className="table table-hover">
               <thead>

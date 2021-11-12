@@ -11,6 +11,7 @@ import useAuth from "../../../../hooks/useAuth";
 import WriteReview from "../WriteReview/WriteReview";
 import MyOrders from "../MyOrders/MyOrders";
 import ManageOrders from "../ManageOrders/ManageOrder";
+import MakeAdmin from "../MakeAdmin/MakeAdmin";
 
 const Dashboard = () => {
   const { user, userRole, logOut } = useAuth();
@@ -142,10 +143,10 @@ const Dashboard = () => {
         <div className="dashboard-content">
           <Switch>
             <PrivateRoute exact path="/dashboard">
-              <MyOrders></MyOrders>
+              <DashboardHome></DashboardHome>
             </PrivateRoute>
             <PrivateRoute path={`${path}/home`}>
-              <MyOrders></MyOrders>
+              <DashboardHome></DashboardHome>
             </PrivateRoute>
             <PrivateRoute path={`${path}/myOrders`}>
               <MyOrders></MyOrders>
@@ -163,7 +164,7 @@ const Dashboard = () => {
               <ManageOrders></ManageOrders>
             </AdminRoute>
             <AdminRoute path={`${path}/makeAdmin`}>
-              <ManageOrders></ManageOrders>
+              <MakeAdmin></MakeAdmin>
             </AdminRoute>
             <AdminRoute path={`${path}/addProduct`}>
               <ManageOrders></ManageOrders>
