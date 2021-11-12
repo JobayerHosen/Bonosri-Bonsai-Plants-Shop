@@ -107,6 +107,7 @@ const useFirebase = () => {
 
   //GET USER ROLE / SECURITY LEVEL
   const getUserRole = async (uid) => {
+    setIsLoading(true);
     await fetch(`https://bonosri-bonsai.herokuapp.com/users/${uid}`)
       .then((res) => res.json())
       .then((userDb) => {
@@ -116,7 +117,8 @@ const useFirebase = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(setIsLoading(false));
   };
 
   //   LOG OUT

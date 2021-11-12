@@ -16,6 +16,10 @@ a:hover {
   color: #62b875;
 }
 
+hr {
+  z-index: 1;
+}
+
 body {
   background-color: #ffffff;
 }

@@ -38,7 +38,12 @@ const Purchage = () => {
       name: user?.displayName,
       uid: user?.uid,
       productId: id,
+      productName: product?.title,
+      productImg: product?.img,
+      productPrice: product?.price,
+      orderDate: new Date().toLocaleDateString(),
       email: user.email,
+      status: "Pending",
     };
     const submitData = { ...initialOrderData, ...orderData, total: orderData.quantity * product.price };
     e.target.reset();

@@ -9,6 +9,8 @@ import PrivateRoute from "../../Shared/PrivateRoute/PrivateRoute";
 import AdminRoute from "../../Shared/AdminRoute/AdminRoute";
 import useAuth from "../../../../hooks/useAuth";
 import WriteReview from "../WriteReview/WriteReview";
+import MyOrders from "../MyOrders/MyOrders";
+import ManageOrders from "../ManageOrders/ManageOrder";
 
 const Dashboard = () => {
   const { user, userRole, logOut } = useAuth();
@@ -24,7 +26,7 @@ const Dashboard = () => {
           </NavLink>
           <hr />
           <ul>
-            {user && userRole === "admin" ? (
+            {user && userRole === "admin" && (
               <>
                 <NavLink activeClassName="active-nav" to={`${url}/home`}>
                   <li className="nav-item">
@@ -57,7 +59,8 @@ const Dashboard = () => {
                   </li>
                 </NavLink>
               </>
-            ) : (
+            )}
+            {user && userRole === "normal" && (
               <>
                 <NavLink activeClassName="active-nav" to={`${url}/myOrders`}>
                   <li className="nav-item">
@@ -79,6 +82,11 @@ const Dashboard = () => {
                 </NavLink>
               </>
             )}
+            <hr />
+            <li onClick={logOut} className="nav-item">
+              <i className="bi bi-box-arrow-right"></i>
+              <span>Log Out</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -111,7 +119,7 @@ const Dashboard = () => {
                 </div>
                 <hr />
                 <ul className="text-start">
-                  <li className="border-bottom d-block py-1">
+                  <li className=" d-block py-1">
                     <NavLink
                       className="d-inline-block text-decoration-none   me-3"
                       to="/dashboard"
@@ -119,17 +127,6 @@ const Dashboard = () => {
                     >
                       <i className="bi bi-grid-fill me-2 text-green"></i>
                       Dashboard
-                    </NavLink>
-                  </li>
-
-                  <li className=" d-block py-2">
-                    <NavLink
-                      className="d-inline-block text-decoration-none   me-3"
-                      to="dashboard/myOrders"
-                      activeStyle={{ color: "#ff3344" }}
-                    >
-                      <i className="bi bi-bag-check-fill me-2 text-green"></i>
-                      My Orders
                     </NavLink>
                   </li>
                 </ul>
@@ -145,10 +142,13 @@ const Dashboard = () => {
         <div className="dashboard-content">
           <Switch>
             <PrivateRoute exact path="/dashboard">
-              <DashboardHome></DashboardHome>
+              <MyOrders></MyOrders>
             </PrivateRoute>
             <PrivateRoute path={`${path}/home`}>
-              <DashboardHome></DashboardHome>
+              <MyOrders></MyOrders>
+            </PrivateRoute>
+            <PrivateRoute path={`${path}/myOrders`}>
+              <MyOrders></MyOrders>
             </PrivateRoute>
             <PrivateRoute path={`${path}/pay`}>
               <Payment></Payment>
@@ -157,7 +157,16 @@ const Dashboard = () => {
               <WriteReview></WriteReview>
             </PrivateRoute>
             <AdminRoute path={`${path}/manageOrders`}>
-              <h1>Admin</h1>
+              <ManageOrders></ManageOrders>
+            </AdminRoute>
+            <AdminRoute path={`${path}/manageProducts`}>
+              <ManageOrders></ManageOrders>
+            </AdminRoute>
+            <AdminRoute path={`${path}/makeAdmin`}>
+              <ManageOrders></ManageOrders>
+            </AdminRoute>
+            <AdminRoute path={`${path}/addProduct`}>
+              <ManageOrders></ManageOrders>
             </AdminRoute>
           </Switch>
         </div>

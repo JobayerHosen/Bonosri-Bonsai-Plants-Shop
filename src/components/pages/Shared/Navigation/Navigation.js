@@ -76,17 +76,6 @@ const Navigation = () => {
                           Dashboard
                         </NavLink>
                       </li>
-
-                      <li className=" d-block py-2">
-                        <NavLink
-                          className="d-inline-block text-decoration-none   me-3"
-                          to="dashboard/myOrders"
-                          activeStyle={{ color: "#ff3344" }}
-                        >
-                          <i className="bi bi-bag-check-fill me-2 text-green"></i>
-                          My Orders
-                        </NavLink>
-                      </li>
                     </ul>
                     <hr />
                     <Button onClick={logOut} variant="success" className=" btn-green p-2 px-3">
