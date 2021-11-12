@@ -52,7 +52,13 @@ const WriteReview = () => {
               <span> ({rating})</span>
 
               <FloatingLabel className="my-3" controlId="floatingTextarea2" label="Write Review">
-                <Form.Control as="textarea" placeholder="Leave a comment here" style={{ height: "100px" }} />
+                <Form.Control
+                  value={review}
+                  onChange={(e) => setReview(e.target.value)}
+                  as="textarea"
+                  placeholder="Leave a comment here"
+                  style={{ height: "100px" }}
+                />
               </FloatingLabel>
 
               <Button type="submit" variant="success" className="btn-green ">
