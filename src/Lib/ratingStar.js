@@ -1,5 +1,5 @@
 const ratingStar = (rate = 4) => {
-  const rating = Math.floor(rate);
+  const rating = Math.floor(rate) - 0.1;
   const stars = [];
   for (let i = 0; i < 5; i++) {
     if (i < rating) stars.push("bi bi-star-fill");

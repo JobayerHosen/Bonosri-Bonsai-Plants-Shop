@@ -63,6 +63,12 @@ const Dashboard = () => {
             )}
             {user && userRole === "normal" && (
               <>
+                <NavLink activeClassName="active-nav" to={`${url}/home`}>
+                  <li className="nav-item">
+                    <i className="bi bi-shop"></i>
+                    <span>Dashboard</span>
+                  </li>
+                </NavLink>
                 <NavLink activeClassName="active-nav" to={`${url}/myOrders`}>
                   <li className="nav-item">
                     <i className="bi bi-cart-check"></i>
