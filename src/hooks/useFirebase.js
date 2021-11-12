@@ -20,6 +20,7 @@ const useFirebase = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState("");
   const [updatedName, setUpdatedName] = useState("");
+  const [userRole, setUserRole] = useState("normal");
 
   const auth = getAuth();
 
@@ -31,6 +32,7 @@ const useFirebase = () => {
       .then((result) => {
         setUser(result.user);
         saveUser(result.user.uid, result.user.email, result.user.displayName, "PUT");
+        getUserRole(result.user.uid);
       })
       .catch((error) => {
         setError(error.message);
@@ -80,6 +82,7 @@ const useFirebase = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
+        getUserRole(userCredential.user.uid);
       })
       .catch((err) => {
         setError(err.message);
@@ -87,10 +90,10 @@ const useFirebase = () => {
       .finally(setIsLoading(false));
   };
 
+  //SAVE USER INFO TO DATABASE
   const saveUser = async (uid, email, displayName, method) => {
     const user = { uid, email, displayName };
-    console.log(user);
-    await fetch("http://localhost:5000/users", {
+    await fetch("https://bonosri-bonsai.herokuapp.com/users", {
       method: method,
       headers: {
         "content-type": "application/json",
@@ -98,7 +101,22 @@ const useFirebase = () => {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
+
+  //GET USER ROLE / SECURITY LEVEL
+  const getUserRole = async (uid) => {
+    await fetch(`https://bonosri-bonsai.herokuapp.com/users/${uid}`)
+      .then((res) => res.json())
+      .then((userDb) => {
+        if (userDb?.role) {
+          setUserRole(userDb.role);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //   LOG OUT
@@ -112,6 +130,7 @@ const useFirebase = () => {
       if (user) {
         // User is signed in
         setUser(user);
+        getUserRole(user.uid);
         getIdToken(user).then((idToken) => setToken(idToken));
         // ...
       } else {
@@ -126,6 +145,7 @@ const useFirebase = () => {
     error,
     setError,
     token,
+    userRole,
     isLoading,
     signInWithGoogle,
     createAccountWithEmailPassword,

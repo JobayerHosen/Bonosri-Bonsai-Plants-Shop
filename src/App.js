@@ -8,6 +8,7 @@ import AuthProvider from "./contexts/AuthProvider";
 import Signup from "./components/pages/Signup/Signup";
 import Purchage from "./components/pages/Purchage/Purchage";
 import PrivateRoute from "./components/pages/Shared/PrivateRoute/PrivateRoute";
+import Dashboard from "./components/pages/Dashboard/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <PrivateRoute path="/purchage/:id">
               <Purchage></Purchage>
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+              <Dashboard></Dashboard>
             </PrivateRoute>
             <Route path="*">
               <h1>Page Not Found</h1>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, FloatingLabel, Form, Row, Button } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import ratingStar from "../../../Lib/ratingStar";
 import Navigation from "../Shared/Navigation/Navigation";
@@ -9,6 +9,7 @@ import "./Purchage.css";
 const Purchage = () => {
   const { user } = useAuth();
   const { id } = useParams();
+  const history = useHistory();
   const [product, setProduct] = useState({});
   const stars = ratingStar(product.rating);
 
@@ -40,7 +41,6 @@ const Purchage = () => {
       email: user.email,
     };
     const submitData = { ...initialOrderData, ...orderData, total: orderData.quantity * product.price };
-    console.log(submitData);
     e.target.reset();
 
     fetch("https://bonosri-bonsai.herokuapp.com/orders", {
@@ -51,7 +51,9 @@ const Purchage = () => {
       body: JSON.stringify(submitData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        if (data?._id) history.push("/");
+      })
       .catch((err) => {
         console.log(err);
       });
