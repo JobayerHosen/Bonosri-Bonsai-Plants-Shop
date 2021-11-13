@@ -11,6 +11,7 @@ import useAuth from "../../../../hooks/useAuth";
 import WriteReview from "../WriteReview/WriteReview";
 import MyOrders from "../MyOrders/MyOrders";
 import ManageOrders from "../ManageOrders/ManageOrder";
+import ManageProducts from "../ManageProducts/ManageProducts";
 import MakeAdmin from "../MakeAdmin/MakeAdmin";
 
 const Dashboard = () => {
@@ -167,7 +168,7 @@ const Dashboard = () => {
               <ManageOrders></ManageOrders>
             </AdminRoute>
             <AdminRoute path={`${path}/manageProducts`}>
-              <ManageOrders></ManageOrders>
+              <ManageProducts></ManageProducts>
             </AdminRoute>
             <AdminRoute path={`${path}/makeAdmin`}>
               <MakeAdmin></MakeAdmin>
